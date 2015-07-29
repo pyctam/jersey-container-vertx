@@ -15,10 +15,21 @@
     <url>https://github.com/pyctam/jersey-container-vertx</url>
 
     <properties>
+        <path.root.parent>${project.parent.basedir}</path.root.parent>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.glassfish.jersey.core</groupId>
+            <artifactId>jersey-server</artifactId>
+        </dependency>
+
         <!-- test dependencies -->
         <dependency>
             <groupId>org.testng</groupId>
