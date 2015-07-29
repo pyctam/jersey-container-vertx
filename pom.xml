@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.github.pyctam.jersey-container-vertx</groupId>
@@ -23,7 +24,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <version.java>1.7</version.java>
+        <version.java>1.8</version.java>
         <path.root.parent>${project.basedir}</path.root.parent>
         <path.license.header>file://${path.root.parent}/src/license/header.txt</path.license.header>
     </properties>
@@ -33,7 +34,7 @@
             <dependency>
                 <groupId>io.vertx</groupId>
                 <artifactId>vertx-core</artifactId>
-                <version>2.1.5</version>
+                <version>3.0.0</version>
                 <scope>provided</scope>
             </dependency>
 
@@ -43,6 +44,14 @@
                 <version>2.16</version>
                 <scope>provided</scope>
             </dependency>
+
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>1.7.12</version>
+                <scope>provided</scope>
+            </dependency>
+
 
             <!--  test dependencies -->
             <dependency>
@@ -60,7 +69,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>2.3.2</version>
+                    <version>3.3</version>
                     <configuration>
                         <source>${version.java}</source>
                         <target>${version.java}</target>

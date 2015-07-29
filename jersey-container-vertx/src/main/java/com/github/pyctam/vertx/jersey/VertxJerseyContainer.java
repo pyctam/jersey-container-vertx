@@ -1,12 +1,12 @@
 /**
  * Copyright 2015 the original author or authors.
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -15,6 +15,7 @@
  */
 package com.github.pyctam.vertx.jersey;
 
+import io.vertx.core.http.HttpServerRequest;
 import org.glassfish.jersey.server.ApplicationHandler;
 import org.glassfish.jersey.server.ContainerRequest;
 import org.glassfish.jersey.server.ResourceConfig;
@@ -23,7 +24,6 @@ import org.glassfish.jersey.server.spi.Container;
 import org.glassfish.jersey.server.spi.ContainerLifecycleListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.vertx.java.core.http.HttpServerRequest;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
@@ -31,7 +31,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 /**
- * Created by developer on 3/1/15.
+ * Created by Rustam Bogubaev on 3/1/15.
  */
 public class VertxJerseyContainer implements Container {
     private static final Logger LOGGER = LoggerFactory.getLogger(VertxJerseyContainer.class);
@@ -82,7 +82,7 @@ public class VertxJerseyContainer implements Container {
 
     protected URI resolveBaseUri(HttpServerRequest request) throws URISyntaxException {
         String path = resolveApplicationPath();
-        URI absolute = request.absoluteURI();
+        URI absolute = new URI(request.absoluteURI());
 
         if (path == null) {
             return absolute.resolve("/");
