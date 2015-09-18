@@ -75,7 +75,7 @@ public class VertxJerseyRequest {
     }
 
     protected InputStream createEntityStream() {
-        return new VertxJerseyInputStream(vertxRequest);
+        return new VertxJerseyInputStream(vertxRequest).buffer().getInputStream();
     }
 
     protected ContainerRequest createContainerRequest() {

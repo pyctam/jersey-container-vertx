@@ -20,22 +20,26 @@ import io.vertx.core.Handler;
 import io.vertx.core.buffer.Buffer;
 import io.vertx.core.http.HttpServerRequest;
 
-import java.io.PipedInputStream;
-import java.io.PipedOutputStream;
-
 /**
  * Created by Rustam Bogubaev on 3/1/15.
  */
-public class VertxJerseyInputStream extends PipedInputStream {
-    private PipedOutputStream pipedOutput;
+public class VertxJerseyInputStream {
+    private VertxJerseyBuffer buffer;
     private HttpServerRequest vertxRequest;
 
     public VertxJerseyInputStream(HttpServerRequest vertxRequest) {
-        this.pipedOutput = new PipedOutputStream();
         this.vertxRequest = vertxRequest;
         onData();
         onBody();
         onEnd();
+    }
+
+    public VertxJerseyBuffer buffer() {
+        if (buffer == null) {
+            buffer = new VertxJerseyBuffer();
+        }
+
+        return buffer;
     }
 
     private void onEnd() {
@@ -43,7 +47,7 @@ public class VertxJerseyInputStream extends PipedInputStream {
             @Override
             public void handle(Void event) {
                 try {
-                    pipedOutput.flush();
+                    buffer().getOutputStream().flush();
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
@@ -56,7 +60,7 @@ public class VertxJerseyInputStream extends PipedInputStream {
             @Override
             public void handle(Buffer body) {
                 try {
-                    pipedOutput.write(body.getBytes());
+                    buffer().getOutputStream().write(body.getBytes());
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
@@ -69,7 +73,7 @@ public class VertxJerseyInputStream extends PipedInputStream {
             @Override
             public void handle(Buffer data) {
                 try {
-                    pipedOutput.write(data.getBytes());
+                    buffer().getOutputStream().write(data.getBytes());
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
